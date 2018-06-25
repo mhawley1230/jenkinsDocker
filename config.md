@@ -11,3 +11,9 @@ docker run \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v "$HOME":/home \
   jenkinsci/blueocean
+
+
+  {
+  "cod": 401,
+  "message": "Invalid API key. Please see http://openweathermap.org/faq#error401 for more info."
+}
