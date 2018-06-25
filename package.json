@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
 	"prestart": "npm install",
-	"start": "node ./src/index.js"
+	"start": "forever start -c 'node ./src/index.js' ./src/index.js"
   },
   "keywords": [
     "swagger"
