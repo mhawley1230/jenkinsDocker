@@ -137,7 +137,7 @@ paths:
         type: string
       - name: units
         in: query
-        description: Unit type results should be returned in
+        description: Unit type results should be returned in.
         required: false
         type: string
       responses:

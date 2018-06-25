@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c62f2d06-2ee3-48ce-9ccc-ff2dbb8c4a09" created="2.4.0" activeEnvironment="Default environment" name="OpenWeatherAPI" resourceRoot="" compositeProjectFormat="1.3" updated="2.4.0 2018-06-04T12:31:42Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="939c5722-1446-469c-9a3f-fba124dd05a5" name="OpenWeatherMapAPI" type="rest_ex" wadlVersion="https://swagger.io/swagger2/specification" definitionUrl="https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json" basePath="/data/2.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:description>Swagger file to support OWM</con:description>
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json">
+      <con:part>
+        <con:url>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</con:url>
+        <con:content>{"swagger":"2.0","info":{"version":"1.0.0","title":"OpenWeatherMapAPI","description":"Swagger file to support OWM"},"paths":{"/weather":{"get":{"summary":"Call current weather data for one location","description":"You can call by city name or city name and country code. API responds with a list of results that match a searching word.","produces":["application/json","application/xml"],"parameters":[{"name":"q","in":"query","description":"City name and country code divided by comma, use ISO 3166 country codes","required":false,"type":"string"},{"name":"id","in":"query","description":"You can call by city ID. API responds with exact result.","required":false,"type":"string"},{"name":"lat","in":"query","description":"Coordinates of the location of your interest, **required to be sent as a pair**","required":false,"type":"string"},{"name":"lon","in":"query","description":"Coordinates of the location of your interest, **required to be sent as a pair**","required":false,"type":"string"},{"name":"zip","in":"query","description":"Zip code, please note if country is not specified then the search works for USA as a default","required":false,"type":"string"}],"responses":{"200":{"$ref":"#/definitions/200OneCity"},"401":{"$ref":"#/definitions/401Response"}}}},"/box":{"get":{"summary":"Call current weather data for several cities","description":"JSON returns the data from cities within the defined rectangle specified by the geographic coordinates.","produces":["application/json","application/xml"],"parameters":[{"name":"bbox","in":"query","required":true,"description":"bounding box [lon-left,lat-bottom,lon-right,lat-top,zoom]","type":"string"},{"name":"callback","in":"query","required":false,"description":"javascript functionName","type":"string"},{"name":"cluster","in":"query","required":false,"description":"use server clustering of points. Possible values are [yes, no]","type":"string"},{"name":"lang","in":"query","required":false,"description":"language [ru, en ... ]","type":"string"}],"responses":{"200":{"$ref":"#/definitions/200OneCity"},"401":{"$ref":"#/definitions/401Response"}}}},"/find":{"get":{"summary":"Cities in cycle","description":"JSON returns data from cities laid within definite circle that is specified by center point ('lat', 'lon') and expected number of cities ('cnt') around this point. The default number of cities is 10, the maximum is 50.","produces":["application/json","application/xml"],"parameters":[{"name":"lat","in":"query","required":true,"description":"Latitude","type":"string"},{"name":"lon","in":"query","required":true,"description":"Longitude","type":"string"},{"name":"callback","in":"query","required":false,"description":"functionName for JSONP callback.","type":"string"},{"name":"cluster","in":"query","required":false,"description":"Use server clustering of points. Possible values are [yes, no]","type":"string"},{"name":"lang","in":"query","required":false,"description":"language [ru, en ... ]","type":"string"},{"name":"cnt","in":"query","required":false,"description":"Number of cities around the point that should be returned","type":"string"}],"responses":{"200":{"$ref":"#/definitions/200OneCity"},"401":{"$ref":"#/definitions/401Response"}}}},"/group":{"get":{"summary":"Call for several city IDs","produces":["application/json","application/xml"],"parameters":[{"name":"id","in":"query","description":"Single, or collection of IDs (each counts as 1 API call!)","required":true,"type":"string"},{"name":"units","in":"query","required":false,"description":"Unit type results should be returned in.","type":"string"}],"responses":{"200":{"$ref":"#/definitions/200OneCity"},"401":{"$ref":"#/definitions/401Response"}}}}},"securityDefinitions":{"APPID":{"type":"apiKey","name":"APPID","in":"query"}},"basePath":"/data/2.5/","host":"api.openweathermap.org","schemes":["http"],"definitions":{"401Response":{"description":"Unauthorized request","type":"object","properties":{"cod":{"type":"integer","description":"Status code","example":401},"message":{"type":"string","description":"Status message","example":"Invalid API key. Please see http://openweathermap.org/faq#error401 for more info."}}},"200OneCity":{"required":["coord","weather","base","main","visibility","wind","clouds","dt","sys","id","name","cod"],"properties":{"coord":{"required":["lon","lat"],"properties":{"lon":{"type":"number"},"lat":{"type":"number"}},"type":"object"},"weather":{"type":"array","items":{"type":"object","properties":{"id":{"type":"number"},"main":{"type":"string"},"description":{"type":"string"},"icon":{"type":"string"}}}},"base":{"type":"string"},"main":{"required":["temp","pressure","humidity","temp_min","temp_max"],"properties":{"temp":{"type":"number"},"pressure":{"type":"number"},"humidity":{"type":"number"},"temp_min":{"type":"number"},"temp_max":{"type":"number"}},"type":"object"},"visibility":{"type":"number"},"wind":{"required":["speed","deg"],"properties":{"speed":{"type":"number"},"deg":{"type":"number"}},"type":"object"},"clouds":{"required":["all"],"properties":{"all":{"type":"number"}},"type":"object"},"dt":{"type":"number"},"sys":{"required":["type","id","message","country","sunrise","sunset"],"properties":{"type":{"type":"number"},"id":{"type":"number"},"message":{"type":"number"},"country":{"type":"string"},"sunrise":{"type":"number"},"sunset":{"type":"number"}},"type":"object"},"id":{"type":"number"},"name":{"type":"string"},"cod":{"type":"number"}}}}}</con:content>
+        <con:type>https://swagger.io/swagger2/specification</con:type>
+      </con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://api.openweathermap.org</con:endpoint>
+    </con:endpoints>
+    <con:resource name="/weather" path="/weather" id="d06d6375-c759-44d8-a300-72fe8df00dd8">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>APPID</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+          <con:description xsi:nil="true"/>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="GET" id="af00bbe7-b59d-4012-9bb3-9383676e24e2" method="GET">
+        <con:description>You can call by city name or city name and country code. API responds with a list of results that match a searching word.
+Call current weather data for one location</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>q</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>City name and country code divided by comma, use ISO 3166 country codes</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>id</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>You can call by city ID. API responds with exact result.</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>lat</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Coordinates of the location of your interest, **required to be sent as a pair**</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>lon</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Coordinates of the location of your interest, **required to be sent as a pair**</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>zip</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Zip code, please note if country is not specified then the search works for USA as a default</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="e37b2bad-ec6b-49a7-aee4-4c60429e294f" mediaType="application/json">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://api.openweathermap.org</con:endpoint>
+          <con:request/>
+          <con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <con:entry key="q" value="Boston"/>
+            <con:entry key="APPID" value="${#Project#APPID}"/>
+          </con:parameters>
+          <con:parameterOrder>
+            <con:entry>q</con:entry>
+            <con:entry>id</con:entry>
+            <con:entry>lat</con:entry>
+            <con:entry>lon</con:entry>
+            <con:entry>zip</con:entry>
+            <con:entry>APPID</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/box" path="/box" id="849091d7-49e6-4316-ba4b-c36b52d042f2">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>APPID</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+          <con:description xsi:nil="true"/>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="GET" id="e5ba6ce2-31bd-4e90-86d0-da75bbdbd6a4" method="GET">
+        <con:description>JSON returns the data from cities within the defined rectangle specified by the geographic coordinates.
+Call current weather data for several cities</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>bbox</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>bounding box [lon-left,lat-bottom,lon-right,lat-top,zoom]</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>callback</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>javascript functionName</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>cluster</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>use server clustering of points. Possible values are [yes, no]</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>lang</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>language [ru, en ... ]</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="b0b35773-6182-4c86-8e69-833b80ba787b" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://api.openweathermap.org</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <entry key="APPID" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+          </con:parameters>
+          <con:parameterOrder>
+            <con:entry>bbox</con:entry>
+            <con:entry>callback</con:entry>
+            <con:entry>cluster</con:entry>
+            <con:entry>lang</con:entry>
+            <con:entry>APPID</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/find" path="/find" id="eb191f6a-39b3-49c0-9f8e-71cb6389750f">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="GET" id="d3ffb921-4133-4daf-bb67-c598f96af910" method="GET">
+        <con:description>JSON returns data from cities laid within definite circle that is specified by center point ('lat', 'lon') and expected number of cities ('cnt') around this point. The default number of cities is 10, the maximum is 50.
+Cities in cycle</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>lat</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Latitude</con:description>
+          </con:parameter>
+          <con:parameter required="true">
+            <con:name>lon</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Longitude</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>callback</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>functionName for JSONP callback.</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>cluster</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Use server clustering of points. Possible values are [yes, no]</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>lang</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>language [ru, en ... ]</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>cnt</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Number of cities around the point that should be returned</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="a2a08a9a-449c-4650-9382-198cc0867f91" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://api.openweathermap.org</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <entry key="cnt" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+          </con:parameters>
+        </con:request>
+      </con:method>
+    </con:resource>
+    <con:resource name="/group" path="/group" id="5995c390-8a33-4d46-b9b0-ea8e5baafbef">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>APPID</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+          <con:description xsi:nil="true"/>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="GET" id="9a98e63d-166c-448b-82a7-9b996e752a13" method="GET">
+        <con:description>Call for several city IDs</con:description>
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>id</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Single, or collection of IDs (each counts as 1 API call!)</con:description>
+          </con:parameter>
+          <con:parameter>
+            <con:name>units</con:name>
+            <con:style>QUERY</con:style>
+            <con:description>Unit type results should be returned in.</con:description>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+        </con:representation>
+        <con:request name="Request 1" id="d99895b6-54ec-4fd9-888f-dd1f0c02567a" mediaType="application/json">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://api.openweathermap.org</con:endpoint>
+          <con:request/>
+          <con:originalUri>http://api.openweathermap.org/data/2.5/group</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <entry key="APPID" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+          </con:parameters>
+          <con:parameterOrder>
+            <con:entry>id</con:entry>
+            <con:entry>units</con:entry>
+            <con:entry>APPID</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="3edab6a2-e1c3-4a96-bcd7-64f8aeb00b45" name="OpenWeatherMapAPI TestSuite">
+    <con:description>The test suite generated for the REST service [OpenWeatherMapAPI]</con:description>
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="913c0037-bea1-47e0-928a-2132cdc9940e" discardOkResults="true" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="OpenWeatherMapAPI TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="restrequest" name="/weather" id="93b332f0-1a0c-4a47-b49d-1f18026d4890">
+        <con:settings/>
+        <con:config service="OpenWeatherMapAPI" resourcePath="/data/2.5/weather" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="/weather" id="e37b2bad-ec6b-49a7-aee4-4c60429e294f" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://api.openweathermap.org</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri>
+            <con:assertion type="SwaggerComplianceAssertion" id="5c6220eb-01e9-416d-9740-be657807a318" name="Swagger Compliance Assertion">
+              <con:configuration>
+                <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
+                <strictMode>true</strictMode>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="q" value="Boston"/>
+              <con:entry key="APPID" value="${#Project#APPID}"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>q</con:entry>
+              <con:entry>id</con:entry>
+              <con:entry>lat</con:entry>
+              <con:entry>lon</con:entry>
+              <con:entry>zip</con:entry>
+              <con:entry>APPID</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="/box" id="f5215394-1245-42ea-9450-88a767a974bf">
+        <con:settings/>
+        <con:config service="OpenWeatherMapAPI" resourcePath="/data/2.5/box" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="/box" id="b0b35773-6182-4c86-8e69-833b80ba787b" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://api.openweathermap.org</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://api.openweathermap.org/data/2.5/box</con:originalUri>
+            <con:assertion type="SwaggerComplianceAssertion" id="770e9d52-e19e-4a7e-9ed5-1cb1300a7a55" name="Swagger Compliance Assertion">
+              <con:configuration>
+                <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
+                <strictMode>true</strictMode>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <entry key="APPID" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>bbox</con:entry>
+              <con:entry>callback</con:entry>
+              <con:entry>cluster</con:entry>
+              <con:entry>lang</con:entry>
+              <con:entry>APPID</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="/find" id="8426fc7e-ec7d-4272-83c4-f78daadbfa04">
+        <con:settings/>
+        <con:config service="OpenWeatherMapAPI" resourcePath="/data/2.5/find" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="/find" id="a2a08a9a-449c-4650-9382-198cc0867f91" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://api.openweathermap.org</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://api.openweathermap.org/data/2.5/find</con:originalUri>
+            <con:assertion type="SwaggerComplianceAssertion" id="8968f472-061c-4a74-a88e-19e2901bd39d" name="Swagger Compliance Assertion">
+              <con:configuration>
+                <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
+                <strictMode>true</strictMode>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <entry key="cnt" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="/group" id="b01126a7-91f8-4358-bed8-01d4893a9641">
+        <con:settings/>
+        <con:config service="OpenWeatherMapAPI" resourcePath="/data/2.5/group" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="/group" id="d99895b6-54ec-4fd9-888f-dd1f0c02567a" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://api.openweathermap.org</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://api.openweathermap.org/data/2.5/group</con:originalUri>
+            <con:assertion type="SwaggerComplianceAssertion" id="29b4ec02-c363-4528-bf86-4399ff24348a" name="Swagger Compliance Assertion">
+              <con:configuration>
+                <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
+                <strictMode>true</strictMode>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <entry key="APPID" value="${#Project#APPID}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>id</con:entry>
+              <con:entry>units</con:entry>
+              <con:entry>APPID</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:properties>
+    <con:property>
+      <con:name>APPID</con:name>
+      <con:value>053386d4613a4db2f5750f9a17122805</con:value>
+    </con:property>
+  </con:properties>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
