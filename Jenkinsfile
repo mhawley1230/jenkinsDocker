@@ -25,10 +25,10 @@ npm install forever -g'''
             sh './jenkins/scripts/test.sh'
           }
         }
-        stage('ReadyAPI') {
+        stage('') {
           agent {
-            dockerfile {
-              filename './jenkins/Dockerfile'
+            docker {
+              image 'nate01776/soapuipro'
             }
 
           }
