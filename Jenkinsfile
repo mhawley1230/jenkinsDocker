@@ -28,7 +28,7 @@ npm install forever -g'''
         stage('ReadyAPI') {
           agent {
             dockerfile {
-              filename './Dockerfile'
+              filename './jenkins/Dockerfile'
             }
 
           }
