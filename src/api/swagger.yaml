@@ -12,7 +12,7 @@ paths:
   /weather:
     get:
       summary: Call current weather data for one location or more
-      description: You can call by city name or city name and country code. API responds with a list of results that match a searching word.
+      description: You can call by city name or city name and country code. API responds with a list of results that match a searching word!
       produces:
       - application/json
       - application/xml
