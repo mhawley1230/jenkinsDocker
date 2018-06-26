@@ -21,6 +21,10 @@ npm install forever -g'''
       }
       steps {
         sh './jenkins/scripts/test.sh'
+        sh '''docker build \\
+      --build-arg ls_address=127.0.0.1 \\
+      --build-arg project_path=./jenkins/testsuite/OpenWeatherAPI.xml \\
+      -t soapuiproject .'''
       }
     }
     stage('Deliver') {
