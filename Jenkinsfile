@@ -16,26 +16,11 @@ npm install forever -g'''
       }
     }
     stage('Test') {
-      parallel {
-        stage('Test') {
-          environment {
-            CI = 'true'
-          }
-          steps {
-            sh './jenkins/scripts/test.sh'
-          }
-        }
-        stage('ReadyAPI') {
-          agent {
-            dockerfile {
-              filename './jenkins/Dockerfile'
-            }
-
-          }
-          steps {
-            sh 'ls ./'
-          }
-        }
+      environment {
+        CI = 'true'
+      }
+      steps {
+        sh './jenkins/scripts/test.sh'
       }
     }
     stage('Deliver') {
