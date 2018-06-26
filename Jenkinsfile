@@ -16,26 +16,11 @@ npm install forever -g'''
       }
     }
     stage('Test') {
-      parallel {
-        stage('Test') {
-          environment {
-            CI = 'true'
-          }
-          steps {
-            sh './jenkins/scripts/test.sh'
-          }
-        }
-        stage('') {
-          agent {
-            docker {
-              image 'nate01776/soapuipro'
-            }
-
-          }
-          steps {
-            sh 'ls ./'
-          }
-        }
+      environment {
+        CI = 'true'
+      }
+      steps {
+        sh './jenkins/scripts/test.sh'
       }
     }
     stage('Deliver') {
