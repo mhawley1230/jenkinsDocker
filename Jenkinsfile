@@ -12,19 +12,34 @@ pipeline {
         sh 'npm install'
         sh '''
 npm install forever -g'''
+        sh './jenkins/scripts/deliver.sh'
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
-      }
-      steps {
-        sh './jenkins/scripts/test.sh'
+      parallel {
+        stage('Test') {
+          environment {
+            CI = 'true'
+          }
+          steps {
+            sh './jenkins/scripts/test.sh'
+          }
+        }
+        stage('ReadyAPI') {
+          agent {
+            dockerfile {
+              filename './jenkins/Dockerfile'
+            }
+
+          }
+          steps {
+            sh 'ls ./'
+          }
+        }
       }
     }
     stage('Deliver') {
       steps {
-        sh './jenkins/scripts/deliver.sh'
         input 'Finished using the web site? (Click "Proceed" to continue)'
         sh './jenkins/scripts/kill.sh'
       }
