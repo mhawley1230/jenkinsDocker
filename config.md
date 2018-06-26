@@ -5,6 +5,8 @@ pass: test
 # jenkins run:
 docker run \
   --rm \
+  --privileged=true \
+  -e PATH="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
   -u root \
   -p 8080:8080 \
   -v jenkins-data:/var/jenkins_home \
