@@ -26,11 +26,14 @@ npm install forever -g'''
           }
         }
         stage('ReadyAPI') {
-          steps {
-            node(label: 'ReadyAPI') {
-              sh '//testrunner script'
+          agent {
+            dockerfile {
+              filename './Dockerfile'
             }
 
+          }
+          steps {
+            sh 'ls ./'
           }
         }
       }
