@@ -1,0 +1,279 @@
+---
+swagger: "2.0"
+info:
+  description: Swagger file to support OWM
+  version: 1.0.0
+  title: OpenWeatherMapAPI
+host: api.openweathermap.org
+basePath: /data/2.5/
+schemes:
+- http
+paths:
+  /weather:
+    get:
+      summary: This is a different description
+      description: You can call by city name or city name and country code. API responds with a list of results that match a searching word!
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: q
+        in: query
+        description: City name and country code divided by comma, use ISO 3166 country codes.
+        required: true
+        type: string
+      - name: id
+        in: query
+        description: You can call by city ID. API responds with exact result.
+        required: false
+        type: string
+      - name: lat
+        in: query
+        description: Coordinates of the location of your interest, **required to be sent as a pair**
+        required: false
+        type: string
+      - name: lon
+        in: query
+        description: Coordinates of the location of your interest, **required to be sent as a pair**
+        required: false
+        type: string
+      - name: zip
+        in: query
+        description: Zip code, please note if country is not specified then the search works for USA as a default
+        required: false
+        type: string
+      responses:
+        200:
+          $ref: '#/definitions/200OneCity'
+        401:
+          $ref: '#/definitions/401Response'
+  /box:
+    get:
+      summary: Call current weather data for several cities
+      description: JSON returns the data from cities within the defined rectangle specified by the geographic coordinates.
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: bbox
+        in: query
+        description: bounding box [lon-left,lat-bottom,lon-right,lat-top,zoom]
+        required: true
+        type: string
+      - name: callback
+        in: query
+        description: javascript functionName
+        required: false
+        type: string
+      - name: cluster
+        in: query
+        description: use server clustering of points. Possible values are [yes, no]
+        required: false
+        type: string
+      - name: lang
+        in: query
+        description: language [ru, en ... ]
+        required: false
+        type: string
+      responses:
+        200:
+          $ref: '#/definitions/200OneCity'
+        401:
+          $ref: '#/definitions/401Response'
+  /find:
+    get:
+      summary: Cities in cycle
+      description: JSON returns data from cities laid within definite circle that is specified by center point ('lat', 'lon') and expected number of cities ('cnt') around this point. The default number of cities is 10, the maximum is 50.
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: lat
+        in: query
+        description: Latitude
+        required: true
+        type: string
+      - name: lon
+        in: query
+        description: Longitude
+        required: true
+        type: string
+      - name: callback
+        in: query
+        description: functionName for JSONP callback.
+        required: false
+        type: string
+      - name: cluster
+        in: query
+        description: Use server clustering of points. Possible values are [yes, no]
+        required: false
+        type: string
+      - name: lang
+        in: query
+        description: language [ru, en ... ]
+        required: false
+        type: string
+      - name: cnt
+        in: query
+        description: Number of cities around the point that should be returned
+        required: false
+        type: string
+      responses:
+        200:
+          $ref: '#/definitions/200OneCity'
+        401:
+          $ref: '#/definitions/401Response'
+  /group:
+    get:
+      summary: Call for several city IDs
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: query
+        description: Single, or collection of IDs (each counts as 1 API call!)
+        required: true
+        type: string
+      - name: units
+        in: query
+        description: Unit type results should be returned in.
+        required: false
+        type: string
+      responses:
+        200:
+          $ref: '#/definitions/200OneCity'
+        401:
+          $ref: '#/definitions/401Response'
+securityDefinitions:
+  APPID:
+    type: apiKey
+    name: APPID
+    in: query
+definitions:
+  401Response:
+    type: object
+    properties:
+      cod:
+        type: integer
+        example: 401
+        description: Status code
+      message:
+        type: string
+        example: Invalid API key. Please see http://openweathermap.org/faq#error401 for more info.
+        description: Status message
+    description: Unauthorized request
+  200OneCity:
+    required:
+    - base
+    - clouds
+    - cod
+    - coord
+    - dt
+    - id
+    - main
+    - name
+    - sys
+    - visibility
+    - weather
+    - wind
+    properties:
+      coord:
+        $ref: '#/definitions/200OneCity_coord'
+      weather:
+        type: array
+        items:
+          $ref: '#/definitions/200OneCity_weather'
+      base:
+        type: string
+      main:
+        $ref: '#/definitions/200OneCity_main'
+      visibility:
+        type: number
+      wind:
+        $ref: '#/definitions/200OneCity_wind'
+      clouds:
+        $ref: '#/definitions/200OneCity_clouds'
+      dt:
+        type: number
+      sys:
+        $ref: '#/definitions/200OneCity_sys'
+      id:
+        type: number
+      name:
+        type: string
+      cod:
+        type: number
+  200OneCity_coord:
+    required:
+    - lat
+    - lon
+    properties:
+      lon:
+        type: number
+      lat:
+        type: number
+  200OneCity_weather:
+    properties:
+      id:
+        type: number
+      main:
+        type: string
+      description:
+        type: string
+      icon:
+        type: string
+  200OneCity_main:
+    required:
+    - humidity
+    - pressure
+    - temp
+    - temp_max
+    - temp_min
+    properties:
+      temp:
+        type: number
+      pressure:
+        type: number
+      humidity:
+        type: number
+      temp_min:
+        type: number
+      temp_max:
+        type: number
+  200OneCity_wind:
+    required:
+    - deg
+    - speed
+    properties:
+      speed:
+        type: number
+      deg:
+        type: number
+  200OneCity_clouds:
+    required:
+    - all
+    properties:
+      all:
+        type: number
+  200OneCity_sys:
+    required:
+    - country
+    - id
+    - message
+    - sunrise
+    - sunset
+    - type
+    properties:
+      type:
+        type: number
+      id:
+        type: number
+      message:
+        type: number
+      country:
+        type: string
+      sunrise:
+        type: number
+      sunset:
+        type: number
