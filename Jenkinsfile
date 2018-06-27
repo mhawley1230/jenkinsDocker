@@ -20,6 +20,7 @@ npm install forever -g'''
       }
       steps {
         sh './jenkins/scripts/test.sh'
+        sh 'echo "hello"'
       }
     }
     stage('Deliver') {
