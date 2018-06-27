@@ -11,7 +11,7 @@ schemes:
 paths:
   /weather:
     get:
-      summary: This is a different description
+      summary: Resource for individual city weather.
       description: You can call by city name or city name and country code. API responds with a list of results that match a searching word!
       produces:
       - application/json
