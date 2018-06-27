@@ -2,8 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node:6-alpine'
-      args '''--priviledged \\
--ti \\
+      args '''-ti \\
 -p 8077:8077'''
     }
 
