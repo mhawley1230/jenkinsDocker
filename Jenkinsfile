@@ -25,7 +25,8 @@ npm install forever -g'''
             sh 'echo "hello"'
           }
         }
-        stage('') {
+        stage('error') {
+          agent any
           steps {
             sh 'curl http://www.google.com'
           }
