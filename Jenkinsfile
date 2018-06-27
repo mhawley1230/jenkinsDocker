@@ -1,17 +1,10 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:6-alpine'
-      args '-p 8077:8077'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh '''
-npm install forever -g'''
+        bat 'npm install'
+        bat 'npm install forever -g'
       }
     }
     stage('Test') {
@@ -19,14 +12,14 @@ npm install forever -g'''
         CI = 'true'
       }
       steps {
-        sh './jenkins/scripts/test.sh'
+        bat '"C:\\Program Files\\SmartBear\\ReadyAPI-2.4.0\\bin\\testrunner.bat" -r -a -j -f${WORKSPACE} "-RJUnit-Style HTML Report" -FXML "-EDefault environment" %WORKSPACE%\\jenkins\\testsuite\\OpenWeatherAPI.xml'
       }
     }
     stage('Deliver') {
       steps {
-        sh './jenkins/scripts/deliver.sh'
+        bat 'npm start'
         input 'Finished using the web site? (Click "Proceed" to continue)'
-        sh './jenkins/scripts/kill.sh'
+        bat 'forever stopall'
       }
     }
   }

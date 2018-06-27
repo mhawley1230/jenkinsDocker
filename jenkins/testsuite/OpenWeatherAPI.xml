@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="c62f2d06-2ee3-48ce-9ccc-ff2dbb8c4a09" created="2.4.0" activeEnvironment="Default environment" name="OpenWeatherAPI" resourceRoot="" compositeProjectFormat="1.3" updated="2.4.0 2018-06-04T12:31:42Z" xmlns:con="http://eviware.com/soapui/config">
-  <con:settings/>
+<con:soapui-project id="c62f2d06-2ee3-48ce-9ccc-ff2dbb8c4a09" created="2.4.0" activeEnvironment="Default environment" name="OpenWeatherAPI" resourceRoot="" compositeProjectFormat="1.3" updated="2.4.0 2018-06-04T12:31:42Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.ProTestRunnerUIAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Report Format(s)" value="XML"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Export JUnit Results" value="true"/>
+  <con:entry key="Export All" value="true"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Test Suite Tags" value=""/>
+  <con:entry key="Select Report Type" value="JUnit-Style report for automation"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Test Suite" value="&lt;all>"/>
+  <con:entry key="Run in-process" value="false"/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Print Report" value="true"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Test Case Tags" value=""/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Test Case" value="&lt;all>"/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value="C:\Program Files\SmartBear\ReadyAPI-2.4.0\bin"/>
+  <con:entry key="Environment" value="Default environment"/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Root Folder" value="${WORKSPACE}"/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="false"/>
+</xml-fragment>]]></con:setting>
+  </con:settings>
   <con:interface xsi:type="con:RestService" id="939c5722-1446-469c-9a3f-fba124dd05a5" name="OpenWeatherMapAPI" type="rest_ex" wadlVersion="https://swagger.io/swagger2/specification" definitionUrl="https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json" basePath="/data/2.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>Swagger file to support OWM</con:description>
     <con:settings/>
@@ -84,6 +120,7 @@ Call current weather data for one location</con:description>
           <con:request/>
           <con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri>
           <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -164,6 +201,7 @@ Call current weather data for several cities</con:description>
           <con:endpoint>http://api.openweathermap.org</con:endpoint>
           <con:request/>
           <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -244,6 +282,7 @@ Cities in cycle</con:description>
           <con:endpoint>http://api.openweathermap.org</con:endpoint>
           <con:request/>
           <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -307,6 +346,7 @@ Cities in cycle</con:description>
           <con:request/>
           <con:originalUri>http://api.openweathermap.org/data/2.5/group</con:originalUri>
           <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -340,7 +380,7 @@ Cities in cycle</con:description>
             <con:endpoint>http://api.openweathermap.org</con:endpoint>
             <con:request/>
             <con:originalUri>http://api.openweathermap.org/data/2.5/weather</con:originalUri>
-            <con:assertion type="SwaggerComplianceAssertion" id="5c6220eb-01e9-416d-9740-be657807a318" name="Swagger Compliance Assertion">
+            <con:assertion type="SwaggerComplianceAssertion" id="5c6220eb-01e9-416d-9740-be657807a318" name="Swagger Compliance Assertion" disabled="true">
               <con:configuration>
                 <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
                 <strictMode>true</strictMode>
@@ -376,7 +416,7 @@ Cities in cycle</con:description>
             <con:endpoint>http://api.openweathermap.org</con:endpoint>
             <con:request/>
             <con:originalUri>http://api.openweathermap.org/data/2.5/box</con:originalUri>
-            <con:assertion type="SwaggerComplianceAssertion" id="770e9d52-e19e-4a7e-9ed5-1cb1300a7a55" name="Swagger Compliance Assertion">
+            <con:assertion type="SwaggerComplianceAssertion" id="770e9d52-e19e-4a7e-9ed5-1cb1300a7a55" name="Swagger Compliance Assertion" disabled="true">
               <con:configuration>
                 <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
                 <strictMode>true</strictMode>
@@ -410,7 +450,7 @@ Cities in cycle</con:description>
             <con:endpoint>http://api.openweathermap.org</con:endpoint>
             <con:request/>
             <con:originalUri>http://api.openweathermap.org/data/2.5/find</con:originalUri>
-            <con:assertion type="SwaggerComplianceAssertion" id="8968f472-061c-4a74-a88e-19e2901bd39d" name="Swagger Compliance Assertion">
+            <con:assertion type="SwaggerComplianceAssertion" id="8968f472-061c-4a74-a88e-19e2901bd39d" name="Swagger Compliance Assertion" disabled="true">
               <con:configuration>
                 <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
                 <strictMode>true</strictMode>
@@ -437,7 +477,7 @@ Cities in cycle</con:description>
             <con:endpoint>http://api.openweathermap.org</con:endpoint>
             <con:request/>
             <con:originalUri>http://api.openweathermap.org/data/2.5/group</con:originalUri>
-            <con:assertion type="SwaggerComplianceAssertion" id="29b4ec02-c363-4528-bf86-4399ff24348a" name="Swagger Compliance Assertion">
+            <con:assertion type="SwaggerComplianceAssertion" id="29b4ec02-c363-4528-bf86-4399ff24348a" name="Swagger Compliance Assertion" disabled="true">
               <con:configuration>
                 <swaggerUrl>https://api.swaggerhub.com/apis/SE-Design/OpenWeatherMapAPI/1.0.0/swagger.json</swaggerUrl>
                 <strictMode>true</strictMode>
@@ -465,6 +505,7 @@ Cities in cycle</con:description>
     <con:properties/>
     <con:reportParameters/>
   </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
   <con:properties>
     <con:property>
       <con:name>APPID</con:name>
