@@ -2,10 +2,10 @@
   "name": "openweathermapapi",
   "version": "1.0.0",
   "description": "Swagger file to support OWM",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
-	"prestart": "npm install",
-	"start": "forever start -c 'node ./src/index.js' ./src/index.js"
+    "prestart": "npm install",
+    "start": "forever start index.js"
   },
   "keywords": [
     "swagger"

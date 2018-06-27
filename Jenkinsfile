@@ -12,7 +12,6 @@ pipeline {
         sh 'npm install'
         sh '''
 npm install forever -g'''
-        sh './jenkins/scripts/deliver.sh'
       }
     }
     stage('Test') {
@@ -25,6 +24,7 @@ npm install forever -g'''
     }
     stage('Deliver') {
       steps {
+        sh './jenkins/scripts/deliver.sh'
         input 'Finished using the web site? (Click "Proceed" to continue)'
         sh './jenkins/scripts/kill.sh'
       }
