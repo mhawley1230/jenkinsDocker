@@ -3,7 +3,8 @@ pipeline {
     docker {
       image 'node:6-alpine'
       args '''-ti
--p 8077:8077'''
+-p 8077:8077
+-v /var/run/docker.sock:/var/run/docker.sock'''
     }
 
   }
@@ -30,7 +31,7 @@ npm install forever -g'''
           agent {
             docker {
               image 'nate01776/soapuipro'
-              args '''--privileged \\
+              args '''-v /var/run/docker.sock:/var/run/docker.sock
 -p 8090:8090'''
             }
 
