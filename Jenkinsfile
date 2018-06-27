@@ -29,7 +29,8 @@ npm install forever -g'''
           agent {
             docker {
               image 'nate01776/soapuipro'
-              args '-p 8090:8090'
+              args '''--privileged \\
+-p 8090:8090'''
             }
 
           }
