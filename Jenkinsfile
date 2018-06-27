@@ -2,9 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node:6-alpine'
-      args '''-ti
--p 8077:8077
--v /var/run/docker.sock:/var/run/docker.sock'''
+      args '-p 8077:8077'
     }
 
   }
@@ -17,29 +15,12 @@ npm install forever -g'''
       }
     }
     stage('Test') {
-      parallel {
-        stage('Test') {
-          environment {
-            CI = 'true'
-          }
-          steps {
-            sh './jenkins/scripts/test.sh'
-            sh 'echo "hello"'
-          }
-        }
-        stage('API Test') {
-          agent {
-            docker {
-              image 'nate01776/soapuipro'
-              args '''-v /var/run/docker.sock:/var/run/docker.sock
--p 8090:8090'''
-            }
-
-          }
-          steps {
-            sh 'ls'
-          }
-        }
+      environment {
+        CI = 'true'
+      }
+      steps {
+        sh './jenkins/scripts/test.sh'
+        sh 'echo "hello"'
       }
     }
     stage('Deliver') {
