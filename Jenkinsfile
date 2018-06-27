@@ -25,9 +25,9 @@ npm install forever -g'''
             sh 'echo "hello"'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
-            sh 'http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=053386d4613a4db2f5750f9a17122805'
+            sh 'curl http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=053386d4613a4db2f5750f9a17122805'
           }
         }
       }
