@@ -1,5 +1,10 @@
 pipeline {
-  agent none
+  agent {
+    node {
+      label 'ci_runner'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
