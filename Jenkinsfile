@@ -15,12 +15,21 @@ npm install forever -g'''
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
-      }
-      steps {
-        sh './jenkins/scripts/test.sh'
-        sh 'echo "hello"'
+      parallel {
+        stage('Test') {
+          environment {
+            CI = 'true'
+          }
+          steps {
+            sh './jenkins/scripts/test.sh'
+            sh 'echo "hello"'
+          }
+        }
+        stage('') {
+          steps {
+            sh 'http://api.openweathermap.org/data/2.5/weather?q=Boston&APPID=053386d4613a4db2f5750f9a17122805'
+          }
+        }
       }
     }
     stage('Deliver') {
