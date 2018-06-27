@@ -15,12 +15,21 @@ npm install forever -g'''
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
-      }
-      steps {
-        sh './jenkins/scripts/test.sh'
-        sh 'echo "hello"'
+      parallel {
+        stage('Test') {
+          environment {
+            CI = 'true'
+          }
+          steps {
+            sh './jenkins/scripts/test.sh'
+            sh 'echo "hello"'
+          }
+        }
+        stage('') {
+          steps {
+            sh 'curl http://www.google.com'
+          }
+        }
       }
     }
     stage('Deliver') {
