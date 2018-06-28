@@ -49,7 +49,7 @@ class LoginForm(unittest.TestCase):
         try:
             # load the page url
             print('Loading Url')
-            self.driver.get('http://10.0.30.175:8077/docs')
+            self.driver.get('http://10.0.28.235:8077/docs')
 
 
             welcomeText = elem.text
