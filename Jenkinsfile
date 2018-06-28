@@ -18,7 +18,6 @@ pipeline {
     stage('Deliver') {
       steps {
         bat 'npm start'
-        bat 'forever list'
         input 'Finished using the web site? (Click "Proceed" to continue)'
         bat 'forever stopall'
       }
