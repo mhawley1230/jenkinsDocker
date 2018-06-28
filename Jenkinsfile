@@ -13,7 +13,7 @@ pipeline {
       }
       steps {
         bat '"C:\\Program Files\\SmartBear\\ReadyAPI-2.4.0\\bin\\testrunner.bat" -r -a -j -f${WORKSPACE} "-RJUnit-Style HTML Report" -FXML "-EDefault environment" %WORKSPACE%\\jenkins\\testsuite\\OpenWeatherAPI.xml'
-        cbt(credentialsId: 'ufbe8ecde9dec23a', useTestResults: true) {
+        cbt(credentialsId: 'ufbe8ecde9dec23a', useTestResults: true, tunnelName: 'x', localTunnelPath: 'x') {
           cbtSeleniumTest(browser: 'Safari10', operatingSystem: 'Mac10.12', resolution: '1024x768') {
             sh 'python ./jenkins/testsuite/cbtTest.py'
           }
