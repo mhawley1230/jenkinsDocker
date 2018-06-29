@@ -20,8 +20,8 @@ paths:
       parameters:
       - name: q
         in: query
-        description: City name and country code divided by comma, use ISO 3166 country codes!!!
-        required: true
+        description: City name and country code divided by comma, use ISO 3166 country codes.
+        required: false
         type: string
       - name: id
         in: query
