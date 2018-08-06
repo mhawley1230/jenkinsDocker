@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'sh npm install'
+        sh 'sudo sh npm install'
       }
     }
     stage('Test') {
@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Deliver') {
       steps {
-        sh 'sh npm start'
+        sh 'sudo sh npm start'
         input 'Finished using the web site? (Click "Proceed" to continue)'
       }
     }
