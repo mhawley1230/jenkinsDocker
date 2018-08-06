@@ -8,6 +8,10 @@ pipeline {
   }
   stages {
     stage('Build') {
+      agent any
+      environment {
+        npm_config_cache = 'npm-cache'
+      }
       steps {
         sh 'npm install'
         sh 'npm install -g forever'
