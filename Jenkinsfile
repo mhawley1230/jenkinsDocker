@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node:6-alpine'
-      args '-p 3000:3000'
+      args '-p 8077:8077'
     }
 
   }
@@ -10,6 +10,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'npm install'
+        sh 'npm install -g forever'
       }
     }
     stage('Test') {
